@@ -42,6 +42,15 @@ Route.set('/admin', Auth.check, function(){
 #### Change route
 web-router adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
+#### Parse data with `Route.change()`
+If you have some data you doesn’t what exposed in the URL, it is posible to parse data with when you change the route.
+```js
+Route.change(‘your/path’, { key: value });
+// the data are now available with the
+Route.data.key;
+```
+> *Notice:* Its important to notice that every time you run the route change where you parse data with it. The data will be reset or replaced with new data when the `Route.change()` is run again or the page is hard refreshed.
+
 
 #### Define 404 error
 If you want to, you can rewrite the `Route.notFound()` to what ever you want.
