@@ -7,6 +7,7 @@ npm install --save router.js
 ```
 
 
+
 ### Usage
 To setup Router.js all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
 ```js
@@ -20,11 +21,13 @@ Route.init();
 ```
 
 
+
 #### Optional variables
 If you need a variable in a route to be optional, you can do this by adding a `?` at the end
 ```js
 Route.set('user/:id?', UserController.index);
 ```
+
 
 
 #### Middlewares
@@ -38,8 +41,10 @@ Route.set('/admin', Auth.check(), function(){
 ```  
 
 
+
 #### Change route
 Router.js adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
+
 
 
 #### Define 404 error
