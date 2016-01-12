@@ -1,26 +1,38 @@
-var Router = Route = {
+'use strict';
+
+module.exports = {
 
   paths: [],
   currentPath: null,
   currentRoute: null,
   data: {},
 
-
   init: function(){
     window.onpopstate = function(e){
       this.find();
     }.bind(this);
 
+    this.events();
     this.find();
   },
 
 
-  get: function(path, callback){
-    this.set('GET', path, callback); 
+  events: function(){
+    $('body').on('tap click', 'a', function(event){
+      if($(this).attr('target') != '_blank'){
+        event.preventDefault();
+        Route.change($(this).attr('href'));
+      }
+    });
   },
 
 
-  set: function(method, path, callback){
+  set: function(path, callback){
+    this.build('GET', path, callback); 
+  },
+
+
+  build: function(method, path, callback){
 
     if(path[0] != '/')
       path = '/'+path;
@@ -82,9 +94,8 @@ var Router = Route = {
       }
     }
 
-    Router.change('/');
+    this.notFound();
   },
-
 
   checkForVars: function(index){
     var path = this.paths[index].path.split('/');
@@ -116,6 +127,10 @@ var Router = Route = {
     
     data.path = newPath;
     return data;
-  }
+  },
+
+  notFound: function(){
+
+  },
 
 };
