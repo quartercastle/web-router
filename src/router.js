@@ -1,29 +1,26 @@
 'use strict';
 
-var Route = {
+var Route = (function(){
 
-  paths: [],
-  realPath: null,
-  currentPath: null,
-  currentRoute: null,
-  data: {},
-
-
-  init: function(){
-    window.onpopstate = function(e){
-      this.find();
-    }.bind(this);
-
-    this.events.register();
-    this.find();
-  },
+  /**
+   * Variables
+   */
+  var realPath = null,
+      currentPath = null,
+      currentRoute=  null;
 
 
-  events: {
+  /**
+   * events
+   * This object handles the registration and handling of events related to the Route object
+   *
+   * @type {Object}
+   */
+  var events = {
     register: function(){
       var elems = document.getElementsByTagName('a');
       for(var i = 0; i < elems.length; i++){
-        elems[i].addEventListener('click', this.linkClick);
+        elems[i].addEventListener('click', events.linkClick);
       }
     },
 
@@ -32,124 +29,62 @@ var Route = {
         event.preventDefault();
       Route.change(event.target.getAttribute('href'));
     }
-  },
+  };
 
 
-  set: function(path, middleware, callback, options){
-    if(callback === undefined){
-      callback = middleware;
-      middleware = function(){ return true; };
-    }
-
-    this.build(path, middleware, callback, options);
-  },
-
-
-  build: function(path, middleware, callback, options){
-
+  /**
+   * build
+   * Append routes to the available paths array
+   *
+   * @param  {String}   path       The path to append to the path list
+   * @param  {Function} middleware The middle where function, if middleware isn't defined then its null
+   * @param  {Function} callback   The callback function
+   * @param  {[Object]} options    Options, not used right now, maybe for named routes in the future
+   * @return {undefined}
+   */
+  function build(path, middleware, callback, options){
     if(path[0] != '/')
       path = '/'+path;
 
     if(path[path.length-1] == '/')
       path = path.slice(0, -1);
 
-    this.paths.push({
+    Route.paths.push({
       path: path,
       middleware: middleware,
       callback: callback
     });
-  },
+  }
 
 
-  change: function(path, data){
-    if(path[0] != '/')
-      path = '/'+path;
-
-    if(window.location.hash)
-      path += window.location.hash;
-
-    window.history.pushState("","", path);
-    this.find();
-
-    for(var prop in data){
-      this.data[prop] = data[prop];
-    }
-  },
-
-
-  current: function(options){
-    return this;
-  },
-
-
-  getParams: function(){
+  /**
+   * getParams
+   * This function retrieves url params and appends it to the Route.data object
+   *
+   * @return {undefined}
+   */
+  function getParams(){
     if(window.location.search != ''){
       var params = window.location.search.replace('?', '').split('&');
       for(var i = 0; i < params.length; i++){
         var key = decodeURI(params[i].split('=')[0]);
         var value = decodeURI(params[i].split('=')[1]);
-        this.data[key] = value;
+        Route.data[key] = value;
       }
     }
-  },
+  }
 
 
-  find: function(){
-    this.data = {}; // reset old route data
-    this.getParams(); // check for params
-
-    if(!this.paths)
-      return;
-
-    for(var i = 0; i < this.paths.length; i++){
-      this.realPath = window.location.pathname;
-
-      if(this.realPath[this.realPath.length-1] == '/')
-        this.realPath = this.realPath.slice(0, -1);
-
-
-      if(!(this.paths[i].path.indexOf(':') > false) && this.paths[i].path === this.realPath){
-        // normal route
-        if(this.paths[i].middleware()){
-          this.currentRoute = i;
-          this.currentPath = this.paths[i].path;
-          this.paths[i].callback();
-          this.events.register();
-          return this;
-        }
-      }
-    }
-
-    // if no path matched check for paths with vars
-    this.checkForVars();
-  },
-
-
-  checkForVars: function(){
-    for(var i = 0; i < this.paths.length; i++){
-      var route = this.paths[i];
-
-      if((route.path.indexOf(':') > false)){
-        var r = this.pathConstructor(route.path);
-        if(r.path == this.realPath){
-          if(route.middleware()){
-            this.currentRoute = i;
-            this.currentPath = this.paths[i].path;
-            route.callback.apply(this, r.data);
-            this.events.register();
-            return this;
-          }
-        }
-      }
-    }
-
-    this.notFound();
-  },
-
-
-  pathConstructor: function(path){
+  /**
+   * pathConstructor
+   * Creates a defined route with variables and turns it into a usable route
+   *
+   * @param  {Sring} path is a string of the route which needs to be formated
+   * @return {Object} contains the formatted route and a mapping of the variables in the route
+   */
+  function pathConstructor(path){
     path = path.split('/');
-    var realPath = this.realPath.split('/');
+    var rp = realPath.split('/');
     var route = {
       data: [],
       path: '',
@@ -157,14 +92,14 @@ var Route = {
 
     for(var i = 0; i < path.length; i++){
       if(path[i][0] === ':'){
-        if(realPath[i]){
-          this.data[path[i].replace(':', '').replace('?', '')] = decodeURI(realPath[i]);
-          route.data.push(decodeURIComponent(realPath[i]));
-          path[i] = realPath[i];
+        if(rp[i]){
+          Route.data[path[i].replace(':', '').replace('?', '')] = decodeURI(rp[i]);
+          route.data.push(decodeURIComponent(rp[i]));
+          path[i] = rp[i];
         }
 
         if(path[i].indexOf('?') > false)
-          path[i] = realPath[i] || '';
+          path[i] = rp[i] || '';
       }
     }
 
@@ -175,13 +110,144 @@ var Route = {
 
     route.path = path;
     return route;
-  },
+  }
 
 
-  notFound: function(){
-    console.warn('Router.js:   Route is not defined...');
-  },
+  /**
+   * find
+   * Find iterates over the registered routes and looks for matches
+   * if no route matches, the start look for routes with variables
+   *
+   * @return {undefined}
+   */
+  function find(){
+    Route.data = {}; // reset old route data
+    getParams(); // check for params
 
-};
+    if(!Route.paths)
+      return;
 
-module.exports = Route;
+    realPath = window.location.pathname;
+
+    if(realPath[realPath.length-1] == '/')
+      realPath = realPath.slice(0, -1);
+
+    for(var i = 0; i < Route.paths.length; i++){
+      if(!(Route.paths[i].path.indexOf(':') > false) && Route.paths[i].path === realPath){
+        // normal route
+        if(Route.paths[i].middleware()){
+          Route.paths[i].callback();
+          setCurrentRoute(i);
+          return Route;
+        }
+      }
+    }
+
+    // if no path matched check for paths with vars
+    checkForVars();
+  }
+
+
+  /**
+   * checkForVars
+   * Looks for routes with variables. If nothing matches then trigger Route.notFound()
+   *
+   * @return {undefined}
+   */
+  function checkForVars(){
+    for(var i = 0; i < Route.paths.length; i++){
+      var route = Route.paths[i];
+
+      if((route.path.indexOf(':') > false)){
+        var r = pathConstructor(route.path);
+        if(r.path == realPath){
+          if(route.middleware()){
+            route.callback.apply(Route, r.data);
+            setCurrentRoute(i);
+            return Route;
+          }
+        }
+      }
+    }
+
+    Route.notFound();
+  }
+
+
+  /**
+   * setCurrentRoute
+   *
+   * @param {int} i the iteration of paths
+   */
+  function setCurrentRoute(i){
+    currentRoute = i;
+    currentPath = realPath;
+    events.register();
+  }
+
+
+  /**
+   * Route
+   * This is the visible object, to handle the routing
+   *
+   * @type {Object}
+   */
+  var Route = {
+
+    paths: [],
+    data: {},
+
+
+    init: function(){
+      window.onpopstate = function(e){
+        find();
+      }.bind(this);
+
+      events.register();
+      find();
+    },
+
+
+    set: function(path, middleware, callback, options){
+      if(callback === undefined){
+        callback = middleware;
+        middleware = function(){ return true; };
+      }
+
+      build(path, middleware, callback, options);
+    },
+
+
+    change: function(path, data){
+      if(path[0] != '/')
+        path = '/'+path;
+
+      if(window.location.hash)
+        path += window.location.hash;
+
+      window.history.pushState("","", path);
+      find();
+
+      for(var prop in data){
+        this.data[prop] = data[prop];
+      }
+    },
+
+
+    current: function(options){
+      return currentPath;
+    },
+
+
+    notFound: function(){
+      console.warn('Router.js:   Route is not defined...');
+    },
+
+  };
+
+  return Route;
+}());
+
+if(typeof module === "object" && typeof module.exports === "object"){
+  module.exports = Route;
+}
