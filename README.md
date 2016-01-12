@@ -33,7 +33,7 @@ Middlewares are used when you want some logic to run before the callback is trig
 ```js
 // Middleware example
 // If you want to check if a user is logged before the route is available
-Route.set('/admin', Auth.check(), function(){
+Route.set('/admin', Auth.check, function(){
   // triggers if Auth.check() returns true
 }); 
 ```  
