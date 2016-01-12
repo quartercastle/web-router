@@ -45,7 +45,7 @@ web-router adds an event listener to all `<a href="#"></a>` to avoid page refres
 #### Parse data with `Route.change()`
 If you have some data you doesn’t what exposed in the URL, it is posible to parse data with when you change the route.
 ```js
-Route.change(‘your/path’, { key: value });
+Route.change('your/path', { key: value });
 // the data are now available with the
 Route.data.key;
 ```
