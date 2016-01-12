@@ -114,6 +114,7 @@ var Route = {
           this.currentRoute = i;
           this.currentPath = this.paths[i].path;
           this.paths[i].callback();
+          this.events.register();
           return this;
         }
       }
@@ -135,6 +136,7 @@ var Route = {
             this.currentRoute = i;
             this.currentPath = this.paths[i].path;
             route.callback.apply(this, r.data);
+            this.events.register();
             return this;
           }
         }
