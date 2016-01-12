@@ -1,14 +1,17 @@
 {
   "name": "web-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple router module with the ability to handle middlewares",
-  "main": "src/router.js",
+  "main": "index.js",
   "files": [
+    "index.js",
+    "README.md",
+    "LICENSE.md",
     "src/router.js"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kvartborg/Router.js.git"
+    "url": "git+https://github.com/kvartborg/web-router.git"
   },
   "keywords": [
     "router",
@@ -18,6 +21,8 @@
     "route",
     "hander",
     "routes",
+    "web-router",
+    "express",
     "kvartborg"
   ],
   "author": [
@@ -28,9 +33,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kvartborg/Router.js/issues"
+    "url": "https://github.com/kvartborg/web-router/issues"
   },
-  "homepage": "https://github.com/kvartborg/Router.js#readme",
+  "homepage": "https://github.com/kvartborg/web-router#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "del": "^2.2.0",
@@ -41,8 +46,5 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "vinyl-ftp": "^0.4.5"
-  },
-  "dependencies": {
-
   }
 }

@@ -2,14 +2,14 @@
 
 Web-router is a powerful and lightweight client-side router. 
 
-### Install Router.js with npm
+### Install web-router with npm
 ```txt
 npm install --save web-router
 ```
 
 
 ### Usage
-To setup Router.js all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
+To setup web-router all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
 ```js
 var Route = require('web-router');
 
@@ -40,7 +40,7 @@ Route.set('/admin', Auth.check(), function(){
 
 
 #### Change route
-Router.js adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
+web-router adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
 
 #### Define 404 error

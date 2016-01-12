@@ -3,4 +3,5 @@ node_modules
 dist
 .htaccess
 index.php
+Gulpfile.js
 *.sublime-project
