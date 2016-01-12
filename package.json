@@ -1,0 +1,44 @@
+{
+  "name": "router.js",
+  "version": "1.0.0",
+  "description": "Simple router module with middlewares",
+  "main": "src/router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvartborg/Router.js.git"
+  },
+  "keywords": [
+    "router",
+    "route",
+    "endpoint",
+    "handler",
+    "route",
+    "hander",
+    "routes"
+  ],
+  "author": "Frederik Kvartborg Albertsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kvartborg/Router.js/issues"
+  },
+  "homepage": "https://github.com/kvartborg/Router.js#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "vinyl-ftp": "^0.4.5"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5"
+  }
+}
