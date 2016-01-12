@@ -40,7 +40,7 @@ Route.set('/admin', Auth.check, function(){
 
 
 #### Change route
-web-router adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
+web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
 #### Parse data with `Route.change()`
 If you have some data you doesn’t what exposed in the URL, it is posible to parse data with when you change the route.
