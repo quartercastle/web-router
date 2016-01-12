@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta charset="UTF-8">
-  <title>Skemax</title>
+  <title>Router.js</title>
 </head>
 <body>
   <div id="app">
