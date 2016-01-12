@@ -21,13 +21,13 @@ Route.init();
 
 ### Optional variables
 If you need a variable in a route to be optional, you can do this by adding a `?` at the end
-```
+```js
 Route.set('user/:id?', UserController.index);
 ```
 
 ### Middlewares
 Middlewares are used when you want some logic to run before the callback is triggered. If the middleware returns true the callback will run as it normally would. If it returns false the route callback will not be triggeret.
-```
+```js
 // Middleware example
 // If you want to check if a user is logged before the route is available
 Route.set('/admin', Auth.check(), function(){
