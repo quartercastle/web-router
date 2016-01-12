@@ -11,14 +11,13 @@
 
   <meta charset="UTF-8">
   <title>Skemax</title>
-  <link rel="stylesheet" href="/dist/css/app.css?v=<?= rand(0,999999) ?>">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
   <div id="app">
-
+    <a href="test">test</a>
+    <a href="test2">test2</a>
   </div>
-  
+
   <script src="/dist/js/app.js?v=<?= rand(0,999999) ?>" async></script>
 </body>
 </html>
