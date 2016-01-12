@@ -7,7 +7,7 @@ var Route = (function(){
    */
   var realPath = null,
       currentPath = null,
-      currentRoute=  null;
+      currentRouteIndex =  null;
 
 
   /**
@@ -180,7 +180,7 @@ var Route = (function(){
    * @param {int} i the iteration of paths
    */
   function setCurrentRoute(i){
-    currentRoute = i;
+    currentRouteIndex = i;
     currentPath = realPath;
     events.register();
   }
