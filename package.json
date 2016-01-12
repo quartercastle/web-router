@@ -1,11 +1,11 @@
 {
-  "name": "router.js",
+  "name": "web-router",
   "version": "1.0.0",
   "description": "Simple router module with the ability to handle middlewares",
   "main": "src/router.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "files": [
+    "src/router.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kvartborg/Router.js.git"
@@ -17,10 +17,16 @@
     "handler",
     "route",
     "hander",
-    "routes"
+    "routes",
+    "kvartborg"
   ],
-  "author": "Frederik Kvartborg Albertsen",
-  "license": "ISC",
+  "author": [
+    {
+      "name": "Frederik Kvartborg Albertsen",
+      "url": "https://kvartborg.net"
+    }
+  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kvartborg/Router.js/issues"
   },
@@ -37,8 +43,6 @@
     "vinyl-ftp": "^0.4.5"
   },
   "dependencies": {
-    "jquery": "^2.1.4",
-    "react": "^0.14.5",
-    "react-dom": "^0.14.5"
+
   }
 }

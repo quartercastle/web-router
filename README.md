@@ -1,16 +1,17 @@
-# Router.js
+# web-router
 
+Web-router is a powerful and lightweight client-side router. 
 
 ### Install Router.js with npm
 ```txt
-npm install --save router.js
+npm install --save web-router
 ```
 
 
 ### Usage
 To setup Router.js all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
 ```js
-var Route = require('router.js');
+var Route = require('web-router');
 
 Route.set('/hello/:variable', function(variable){
   console.log('hello', variable);
