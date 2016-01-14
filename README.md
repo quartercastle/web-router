@@ -22,7 +22,7 @@ Route.init();
 ```
 
 ##### Route groups
-Is a powerful way to structure your routes, and gives you the ability to namespace groups of routes, and 
+Is a powerful way to structure your routes, and gives you the ability to namespace groups of routes. 
 
 ```js
 // function structure
@@ -60,7 +60,7 @@ Route.set('/admin', Auth.check, function(){
 
 
 ##### Change route
-web-router adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
+web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
 
 ##### Define 404 error
