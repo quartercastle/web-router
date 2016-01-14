@@ -1,7 +1,7 @@
 {
   "name": "web-router",
-  "version": "1.0.2",
-  "description": "Simple router module with the ability to handle middlewares",
+  "version": "1.0.4",
+  "description": "Simple client-side router module with middlewares, route groups and more.",
   "main": "index.js",
   "files": [
     "index.js",
@@ -18,10 +18,12 @@
     "route",
     "endpoint",
     "handler",
-    "route",
-    "hander",
+    "groups",
+    "routing",
+    "middleware",
     "routes",
     "web-router",
+    "client-side",
     "express",
     "kvartborg"
   ],

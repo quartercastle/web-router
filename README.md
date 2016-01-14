@@ -47,6 +47,12 @@ If you need a variable in a route to be optional, you can do this by adding a `?
 Route.set('user/:id?', UserController.index);
 ```
 
+##### Route parameters
+If you have a url with params `example.com?key=value`. You can access those through the the `Route.data`.
+```js
+// example url: www.example.com?key=value
+Route.data.key // returns value
+```
 
 ##### Middlewares
 Middlewares are used when you want some logic to run before the callback is triggered. If the middleware returns true the callback will run as it normally would. If it returns false the route callback will not be triggered.
