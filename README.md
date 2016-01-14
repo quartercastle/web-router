@@ -1,14 +1,10 @@
-# web-router
-
-Web-router is a powerful and lightweight client-side router. 
-
-### Install web-router with npm
+#### Install web-router with npm
 ```txt
 npm install --save web-router
 ```
 
 
-### Usage
+#### Usage
 To setup web-router all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
 ```js
 var Route = require('web-router');
@@ -17,18 +13,42 @@ Route.set('/hello/:variable', function(variable){
   console.log('hello', variable);
 });
 
+Route.group({
+  'path/to/something': function(){},
+  'path/to/something/else': function(){},
+});
+
 Route.init();
 ```
 
+##### Route groups
+Is a powerful way to structure your routes, and gives you the ability to namespace groups of routes, and 
 
-#### Optional variables
+```js
+// function structure
+// namespace (optional): the grouped routes while have the namespace appended
+// middleware (optional): 
+// routes: is a object where the object key defines the route and the related function is the callback 
+Route.group(namespace, middleware, routes);
+
+// example
+Route.group('admin', Auth.admin, {
+  'users': UserController.list,
+  'user/:id': UserController.show,
+  'user/:id/delete': function(){
+     // delete user
+  }
+});
+```
+
+##### Optional variables
 If you need a variable in a route to be optional, you can do this by adding a `?` at the end
 ```js
 Route.set('user/:id?', UserController.index);
 ```
 
 
-#### Middlewares
+##### Middlewares
 Middlewares are used when you want some logic to run before the callback is triggered. If the middleware returns true the callback will run as it normally would. If it returns false the route callback will not be triggered.
 ```js
 // Middleware example
@@ -39,20 +59,11 @@ Route.set('/admin', Auth.check, function(){
 ```  
 
 
-#### Change route
-web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
-
-#### Parse data with `Route.change()`
-If you have some data you doesn’t what exposed in the URL, it is posible to parse data with when you change the route.
-```js
-Route.change('your/path', { key: value });
-// the data are now available with the
-Route.data.key;
-```
-> *Notice:* Its important to notice that every time you run the route change where you parse data with it. The data will be reset or replaced with new data when the `Route.change()` is run again or the page is hard refreshed.
+##### Change route
+web-router adds an event listener to all `<a href="#"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
 
-#### Define 404 error
+##### Define 404 error
 If you want to, you can rewrite the `Route.notFound()` to what ever you want.
 ```js
 // defined function which is triggered when route isn't found

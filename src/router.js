@@ -218,6 +218,25 @@ var Route = (function(){
     },
 
 
+    group: function(namespace, middleware, routes){
+      routes = routes || (typeof middleware === 'object' ? middleware : namespace);
+      middleware = typeof middleware === 'object' ? function(){ return true; } : (middleware || function(){ return true });
+      namespace = typeof namespace === 'function' ? '' : (typeof namespace === 'object' ? '' : namespace);
+
+      if(namespace[namespace.length-1] !== '/')
+        namespace += '/';
+
+      for(var route in routes){
+        if(route[0] === '/')
+          var r = namespace+route.substring(1);
+        else
+          var r = namespace+route;
+
+        this.set(r, middleware, routes[route]);
+      }
+    },
+
+
     change: function(path, data){
       if(path[0] != '/')
         path = '/'+path;

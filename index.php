@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta charset="UTF-8">
-  <title>Router.js</title>
+  <title>web-router</title>
 </head>
 <body>
   <div id="app">
@@ -18,6 +18,7 @@
     <a href="test2">test2</a>
   </div>
 
+  <!--<script src="/dist/js/router.js?v=<?= rand(0,999999) ?>" async></script>-->
   <script src="/dist/js/app.js?v=<?= rand(0,999999) ?>" async></script>
 </body>
 </html>
