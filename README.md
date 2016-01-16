@@ -26,7 +26,7 @@ Is a powerful way to structure your routes, and gives you the ability to namespa
 
 ```js
 // function structure
-// namespace (optional): the grouped routes while have the namespace appended
+// namespace (optional): the grouped routes have the namespace added
 // middleware (optional): 
 // routes: is a object where the object key defines the route and the related function is the callback 
 Route.group(namespace, middleware, routes);
@@ -58,11 +58,11 @@ Route.data.key // returns value
 Middlewares are used when you want some logic to run before the callback is triggered. If the middleware returns true the callback will run as it normally would. If it returns false the route callback will not be triggered.
 ```js
 // Middleware example
-// If you want to check if a user is logged before the route is available
+// If you want to check if a user is logged in before the route is available
 Route.set('/admin', Auth.check, function(){
   // triggers if Auth.check() returns true
 }); 
-```  
+```
 
 
 #### Change route
