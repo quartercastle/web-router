@@ -5,7 +5,7 @@ npm install --save web-router
 
 
 #### Usage
-To setup web-router all you need to do is to reqiure the module, define your routes and then run the `Route.init()`.
+To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
 var Route = require('web-router');
 
