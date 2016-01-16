@@ -6,4 +6,4 @@
 
 'use strict';
 
-module.exports = require('./src/router');
+module.exports = require('./src/web-router');
