@@ -24,7 +24,7 @@ gulp.task('js', function(){
       insertGlobals: true,
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/js/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 
