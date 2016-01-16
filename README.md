@@ -1,10 +1,10 @@
-#### Install web-router with npm
+### Install web-router with npm
 ```txt
 npm install --save web-router
 ```
 
 
-#### Usage
+### Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
 var Route = require('web-router');
@@ -21,7 +21,7 @@ Route.group({
 Route.init();
 ```
 
-##### Route groups
+#### Route groups
 Is a powerful way to structure your routes, and gives you the ability to namespace groups of routes. 
 
 ```js
@@ -41,20 +41,20 @@ Route.group('admin', Auth.admin, {
 });
 ```
 
-##### Optional variables
+#### Optional variables
 If you need a variable in a route to be optional, you can do this by adding a `?` at the end
 ```js
 Route.set('user/:id?', UserController.index);
 ```
 
-##### Route parameters
+#### Route parameters
 If you have a url with params `example.com?key=value`. You can access those through the the `Route.data`.
 ```js
 // example url: www.example.com?key=value
 Route.data.key // returns value
 ```
 
-##### Middlewares
+#### Middlewares
 Middlewares are used when you want some logic to run before the callback is triggered. If the middleware returns true the callback will run as it normally would. If it returns false the route callback will not be triggered.
 ```js
 // Middleware example
@@ -65,11 +65,11 @@ Route.set('/admin', Auth.check, function(){
 ```  
 
 
-##### Change route
+#### Change route
 web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
 
 
-##### Define 404 error
+#### Define 404 error
 If you want to, you can rewrite the `Route.notFound()` to what ever you want.
 ```js
 // defined function which is triggered when route isn't found
