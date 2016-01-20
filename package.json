@@ -1,13 +1,13 @@
 {
   "name": "web-router",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Simple client-side router module with middlewares, route groups and more.",
   "main": "index.js",
   "files": [
     "index.js",
     "README.md",
     "LICENSE.md",
-    "src/router.js"
+    "src/web-router.js"
   ],
   "repository": {
     "type": "git",

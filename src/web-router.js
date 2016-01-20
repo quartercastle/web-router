@@ -220,7 +220,7 @@ var Route = (function(){
 
     group: function(namespace, middleware, routes){
       routes = routes || (typeof middleware === 'object' ? middleware : namespace);
-      middleware = typeof middleware === 'object' ? function(){ return true; } : (middleware || function(){ return true });
+      middleware = typeof middleware === 'function' ? middleware : (typeof namespace === 'function' ? namespace : function(){ return true; });
       namespace = typeof namespace === 'function' ? '' : (typeof namespace === 'object' ? '' : namespace);
 
       if(namespace[namespace.length-1] !== '/')
