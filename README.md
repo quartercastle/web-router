@@ -22,14 +22,14 @@ Route.init();
 ```
 
 #### Route groups
-Is a powerful way to structure your routes, and gives you the ability to namespace groups of routes. 
+Is a powerful way to structure your routes, and gives you the ability to prefix groups of routes. 
 
 ```js
 // function structure
-// namespace (optional): the grouped routes have the namespace added
+// prefix (optional): prefix is added to the routes in the group
 // middleware (optional): 
 // routes: is a object where the object key defines the route and the related function is the callback 
-Route.group(namespace, middleware, routes);
+Route.group(prefix, middleware, routes);
 
 // example
 Route.group('admin', Auth.admin, {
