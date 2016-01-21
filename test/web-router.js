@@ -65,8 +65,41 @@ describe('Test Route.group()', function(){
 });
 
 
-describe('Testing middlewares', function(){
+describe('Test Route.group() with prefix', function(){
+  clear();
 
+  Route.group('prefix', {
+    '/': function(){ return '/prefix'; },
+    '/test': function(){ return '/prefix/test' },
+    '/new/route': function(){ return '/prefix/new/route'; }
+  });
+
+  Route.paths.forEach(function(route) {
+    it('define route: ' + route.path, function () {
+      assert.equal(route.path, route.callback());
+    });
+  });
+});
+
+
+describe('Test route with variables', function(){
+  clear();
+  Route.set('test/:id', function(id){ return id; });
+  Route.change('/test/55');
+  it('get id from route: '+Route.current(), function(){
+    assert.equal('55', Route.data.id);
+  });
+});
+
+
+describe('Test route params', function(){
+  it('Route.data.key should return value', function(){
+    assert.equal('value', Route.data.key);
+  });
+});
+
+
+describe('Testing middlewares', function(){
   it('on Route.set()', function(){
     clear();
     Route.set('/test', function(){ return false; }, function(){ return false; });
@@ -112,7 +145,7 @@ describe('Test Route.current()', function(){
 
 
 describe('Test Route.notFound()', function(){
-  it('trigger notFound', function(){
+  it('triggers notFound', function(){
     var testNotFound = false;
     Route.notFound = function(){ testNotFound = true; };
     Route.change('404');
