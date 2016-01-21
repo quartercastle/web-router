@@ -3,6 +3,10 @@
 npm install --save web-router
 ```
 
+### Run unit test
+```
+npm test
+```
 
 ### Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
