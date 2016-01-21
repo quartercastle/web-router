@@ -205,6 +205,8 @@ var Route = (function(){
 
       events.register();
       find();
+
+      return true;
     },
 
 
@@ -218,19 +220,19 @@ var Route = (function(){
     },
 
 
-    group: function(namespace, middleware, routes){
-      routes = routes || (typeof middleware === 'object' ? middleware : namespace);
-      middleware = typeof middleware === 'function' ? middleware : (typeof namespace === 'function' ? namespace : function(){ return true; });
-      namespace = typeof namespace === 'function' ? '' : (typeof namespace === 'object' ? '' : namespace);
+    group: function(prefix, middleware, routes){
+      routes = routes || (typeof middleware === 'object' ? middleware : prefix);
+      middleware = typeof middleware === 'function' ? middleware : (typeof prefix === 'function' ? prefix : function(){ return true; });
+      prefix = typeof prefix === 'function' ? '' : (typeof prefix === 'object' ? '' : prefix);
 
-      if(namespace[namespace.length-1] !== '/')
-        namespace += '/';
+      if(prefix[prefix.length-1] !== '/')
+        prefix += '/';
 
       for(var route in routes){
         if(route[0] === '/')
-          var r = namespace+route.substring(1);
+          var r = prefix+route.substring(1);
         else
-          var r = namespace+route;
+          var r = prefix+route;
 
         this.set(r, middleware, routes[route]);
       }
