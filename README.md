@@ -8,7 +8,8 @@ npm install --save web-router
 npm test
 ```
 
-
+<br>
+<br>
 ## Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
@@ -28,16 +29,17 @@ Route.init();
 
 #### Without browserify
 ```html
-<script src="web-router.js"></script>
+<script src="/path/to/web-router.js"></script>
 ```
 
-
+<br>
+<br>
 ## Use web-router with ES2015 shorthand functions and React
 If you use ES2015 and React a good way to define your callbacks is by using the shorthand function syntax like below.
 ```jsx
 Route.group('users', {
   '/':      () => ReactDOM.render(<UserList />, $elem),
-  '/:id': (id) => ReactDOM.render(<ShowUser id={id}, $elem)
+  '/:id': (id) => ReactDOM.render(<ShowUser id={id} />, $elem)
 });
 ```
 > **Note:** Its a good idea to create a wrapper function for the ```ReactDOM.render```, both for readability and usage.
