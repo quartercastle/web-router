@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     babel = require('gulp-babel'),
     concat = require('gulp-concat'),
-    ftp = require('vinyl-ftp'),
     browserify = require('gulp-browserify'),
     del = require('del');
 
