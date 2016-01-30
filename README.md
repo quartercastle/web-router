@@ -3,6 +3,11 @@
 npm install --save web-router
 ```
 
+#### Without browserify
+```html
+<script src="/path/to/web-router.js"></script>
+```
+
 ## Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
@@ -18,11 +23,6 @@ Route.group({
 });
 
 Route.init();
-```
-
-#### Without browserify
-```html
-<script src="/path/to/web-router.js"></script>
 ```
 
 
