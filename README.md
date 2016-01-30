@@ -3,12 +3,6 @@
 npm install --save web-router
 ```
 
-### Run unit test
-```
-npm test
-```
-
-<br>
 ## Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
@@ -31,17 +25,12 @@ Route.init();
 <script src="/path/to/web-router.js"></script>
 ```
 
-<br>
-## Use web-router with ES2015 shorthand functions and React
-If you use ES2015 and React a good way to define your callbacks is by using the shorthand function syntax like below.
-```jsx
-Route.group('users', {
-  '/':      () => ReactDOM.render(<UserList />, $elem),
-  '/:id': (id) => ReactDOM.render(<ShowUser id={id} />, $elem)
-});
-```
-> **Note:** Its a good idea to create a wrapper function for the ```ReactDOM.render```, both for readability and usage.
 
+####  Works great with React
+Web-router works great with React. Instead of wrapping the callback in a normal function you could use ES6's new Arrow function like below.  
+```jsx
+Route.set('/user/:id', (id) => ReactDOM.render(<User id={id} />, $elem));
+```
 
 #### Route groups
 Is a powerful way to structure your routes, and gives you the ability to prefix groups of routes. 
@@ -99,3 +88,10 @@ Route.notFound = function(){
   // do something
 };
 ```
+
+
+### Run unit test
+```
+npm test
+```
+
