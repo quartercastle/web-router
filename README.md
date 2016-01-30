@@ -1,14 +1,14 @@
-### Install web-router with npm
+# Install web-router with npm
 ```txt
 npm install --save web-router
 ```
 
-### Run unit test
-```
-npm test
+#### Without browserify
+```html
+<script src="/path/to/web-router.js"></script>
 ```
 
-### Usage
+# Usage
 To setup web-router all you need to do is to reqiure the module with browserify, define your routes and then run the `Route.init()`.
 ```js
 var Route = require('web-router');
@@ -23,6 +23,13 @@ Route.group({
 });
 
 Route.init();
+```
+
+
+####  Works great with React
+Web-router works great with React. Instead of wrapping the callback in a normal function you could use ES6's new Arrow function like below.  
+```jsx
+Route.set('/user/:id', (id) => ReactDOM.render(<User id={id} />, $elem));
 ```
 
 #### Route groups
@@ -81,3 +88,10 @@ Route.notFound = function(){
   // do something
 };
 ```
+
+
+### Run unit test
+```
+npm test
+```
+
