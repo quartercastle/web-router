@@ -13,7 +13,7 @@ gulp.task('clean', function(){
 
 
 gulp.task('js', function(){
-  gulp.src(['src/app.js'])
+  gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
