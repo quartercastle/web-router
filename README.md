@@ -1,4 +1,6 @@
 # Install web-router with npm
+[![Build Status](https://travis-ci.org/kvartborg/web-router.svg?branch=master)](https://travis-ci.org/kvartborg/web-router)
+
 ```txt
 npm install --save web-router
 ```
@@ -33,13 +35,13 @@ Route.set('/user/:id', (id) => ReactDOM.render(<User id={id} />, $elem));
 ```
 
 #### Route groups
-Is a powerful way to structure your routes, and gives you the ability to prefix groups of routes. 
+Is a powerful way to structure your routes, and gives you the ability to prefix groups of routes.
 
 ```js
 // function structure
 // prefix (optional): prefix is added to the routes in the group
-// middleware (optional): 
-// routes: is a object where the object key defines the route and the related function is the callback 
+// middleware (optional):
+// routes: is a object where the object key defines the route and the related function is the callback
 Route.group(prefix, middleware, routes);
 
 // example
@@ -72,12 +74,12 @@ Middlewares are used when you want some logic to run before the callback is trig
 // If you want to check if a user is logged in before the route is available
 Route.set('/admin', Auth.check, function(){
   // triggers if Auth.check() returns true
-}); 
+});
 ```
 
 
 #### Change route
-web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`. 
+web-router adds an event listener to all `<a href="/hello/world"></a>` to avoid page refreshes and instead triggers the `Route.change('/hello/world')`.
 
 
 #### Define 404 error
@@ -94,4 +96,3 @@ Route.notFound = function(){
 ```
 npm test
 ```
-
