@@ -27,13 +27,6 @@ Route.group({
 Route.init();
 ```
 
-
-####  Works great with React
-Web-router works great with React. Instead of wrapping the callback in a normal function you could use ES6's new Arrow function like below.  
-```jsx
-Route.set('/user/:id', (id) => ReactDOM.render(<User id={id} />, $elem));
-```
-
 #### Route groups
 Is a powerful way to structure your routes, and gives you the ability to prefix groups of routes.
 
