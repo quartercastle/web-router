@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('assert');
-var Route = require('../lib/web-router');
+var Route = require('../');
 
 
 function clear(){
